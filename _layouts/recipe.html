@@ -1,0 +1,32 @@
+---
+layout: default
+---
+<article class="recipe">
+  <a class="back" href="{{ '/' | relative_url }}">&larr; All recipes</a>
+
+  {% if page.category %}<p class="eyebrow">{{ page.category }}</p>{% endif %}
+  {% if page.tags contains 'Garden' %}<p class="tag-garden">🌱 Garden</p>{% endif %}
+  <h1>{{ page.title }}</h1>
+  {% if page.edition %}<p class="edition{% if page.edition contains '2.0' %} new{% endif %}">{{ page.edition }}</p>{% endif %}
+  {% if page.from %}<p class="from">From the kitchen of <strong>{{ page.from }}</strong></p>{% endif %}
+
+  {% if page.serves or page.time %}
+  <ul class="meta">
+    {% if page.serves %}<li><span>Serves</span>{{ page.serves }}</li>{% endif %}
+    {% if page.time %}<li><span>Time</span>{{ page.time }}</li>{% endif %}
+  </ul>
+  {% endif %}
+
+  <button class="grams-toggle" type="button" aria-pressed="false"><span class="switch" aria-hidden="true"></span>Show grams</button>
+
+  <div class="recipe-body">
+    {{ content }}
+  </div>
+
+  {% if page.image %}
+  <img class="hero-photo" src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}">
+  {% endif %}
+
+  <button class="print-btn" onclick="window.print()">Print this recipe</button>
+</article>
+<script src="{{ '/assets/grams.js' | relative_url }}"></script>

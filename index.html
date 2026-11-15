@@ -1,0 +1,49 @@
+---
+layout: default
+---
+<section class="intro">
+  <h1>{{ site.title }}</h1>
+  <p>{{ site.description }}</p>
+</section>
+
+{% assign all_cats = site.recipes | map: "category" | compact | uniq | sort %}
+{% assign categories = "" | split: "" %}
+{% for cat in site.category_order %}{% if all_cats contains cat %}{% assign categories = categories | push: cat %}{% endif %}{% endfor %}
+{% for cat in all_cats %}{% unless categories contains cat %}{% assign categories = categories | push: cat %}{% endunless %}{% endfor %}
+
+<section class="controls">
+  <input id="search" type="search" placeholder="Search recipes, ingredients, or cooks…" aria-label="Search recipes">
+  <div class="chips" role="group" aria-label="Filter by category">
+    <button class="chip active" data-cat="all">All</button>
+    {% for cat in categories %}
+    <button class="chip" data-cat="{{ cat | slugify }}">{{ cat }}</button>
+    {% endfor %}
+    <button class="chip chip-garden" data-cat="tag-garden">🌱 Garden</button>
+  </div>
+</section>
+
+{% for cat in categories %}
+{% assign in_cat = site.recipes | where: "category", cat | sort: "title" %}
+<section class="cat-section" data-cat="{{ cat | slugify }}">
+  <h2 class="cat-heading">{{ cat }} <span class="cat-count">{{ in_cat | size }}</span></h2>
+  <ul class="cards">
+    {% for r in in_cat %}
+    {% capture haystack %}{{ r.title }} {{ r.from }} {{ r.category }} {{ r.content | strip_html }}{% endcapture %}
+    <li class="card" data-cat="{{ r.category | slugify }}" data-tags="{{ r.tags | join: ' ' | downcase }}" data-search="{{ haystack | strip_newlines | downcase | escape }}">
+      <a href="{{ r.url | relative_url }}">
+        {% if r.image %}<img src="{{ r.image | relative_url }}" alt="" loading="lazy">{% endif %}
+        <div class="card-text">
+          <h3>{{ r.title }}</h3>
+          {% if r.from %}<p class="from">{{ r.from }}</p>{% endif %}
+          {% if r.tags contains 'Garden' %}<p class="tag-garden">🌱 Garden</p>{% endif %}
+          {% if r.edition contains '2.0' %}<p class="edition new">New</p>{% endif %}
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}
+<p id="empty" class="empty" hidden>No recipes match that search — maybe it's time someone wrote it down!</p>
+
+<script src="{{ '/assets/search.js' | relative_url }}"></script>

@@ -1,0 +1,39 @@
+# ─── Change these to make the cookbook yours ───
+title: Stillwagon Cook
+description: Made with love. Shared with family.
+
+# Order of sections on the home page. New categories not listed here go at the end.
+category_order:
+  - "Appetizers"
+  - "Soups"
+  - "Salads"
+  - "Sides"
+  - "Main Dishes"
+  - "Breads"
+  - "Desserts"
+  - "Cookies & Bars"
+  - "Candy"
+  - "Snacks & Beverages"
+  - "Kids Corner"
+
+# ─── You shouldn't need to touch anything below ───
+markdown: kramdown
+
+collections:
+  recipes:
+    output: true
+    permalink: /recipes/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: recipes
+    values:
+      layout: recipe
+      edition: Stillwagon Cook 2.0
+
+exclude:
+  - README.md
+  - recipe-template.md
+  - Gemfile
+  - Gemfile.lock
