@@ -1,6 +1,7 @@
 ---
 title: "Cheesey Carrots"
 from: "Brittany Robinault, originally from Nadene Robinault"
+image: "/assets/photos/cheesey-carrots.jpg"
 category: "Sides"
 ---
 
