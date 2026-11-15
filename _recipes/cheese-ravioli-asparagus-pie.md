@@ -24,7 +24,7 @@ edition: "Stillwagon Cook: Original Recipe"
 1. Heat oven to 375°F. Grease a 9-inch pie pan.
 2. In a medium-size bowl, lightly beat eggs (2 large) with a fork. Stir in undiluted soup and pepper (¼ tsp.) until blended.
 3. Cover bottom of prepared pie pan with a single layer of ravioli (1 pkg., 18 oz.). Spoon ⅓ of soup mixture over ravioli.
-4. Top with half the zucchini (1 cup), tomatoes, basil and mozzarella.
+4. Top with half the zucchini, tomatoes, basil and mozzarella.
 5. Repeat layers, then top with remaining ravioli and remaining soup mixture.
 6. Bake 45 minutes or until set in center and browned on top. Let stand 15 minutes before cutting in wedges.
 
