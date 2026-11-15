@@ -23,6 +23,17 @@ layout: default
     {{ content }}
   </div>
 
+  <div class="scaler">
+    <span class="scaler-label">Make</span>
+    <div class="scaler-btns">
+      <button type="button" data-f="0.5">½×</button>
+      <button type="button" data-f="1" class="on">1×</button>
+      <button type="button" data-f="2">2×</button>
+      <button type="button" data-f="3">3×</button>
+    </div>
+    <label class="scaler-custom">or <input type="number" min="0.25" max="50" step="0.25" value="1" inputmode="decimal" aria-label="Recipe multiplier"> ×</label>
+  </div>
+
   {% if page.image %}
   <img class="hero-photo" src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}">
   {% endif %}
@@ -30,3 +41,4 @@ layout: default
   <button class="print-btn" onclick="window.print()">Print this recipe</button>
 </article>
 <script src="{{ '/assets/grams.js' | relative_url }}"></script>
+<script src="{{ '/assets/scale.js' | relative_url }}"></script>

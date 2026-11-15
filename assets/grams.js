@@ -145,16 +145,33 @@
     return 0;
   }
 
-  // Work out conversions once, on every ingredient list on the page.
-  var items = document.querySelectorAll('.recipe-body ul li');
-  items.forEach(function (li) {
-    var g = gramsFor(li.textContent);
-    if (!g) return;
-    var span = document.createElement('span');
-    span.className = 'grams';
+  function baseText(li) {
+    var t = '';
+    li.childNodes.forEach(function (n) {
+      if (!(n.classList && n.classList.contains('grams'))) t += n.textContent;
+    });
+    return t;
+  }
+
+  function update(li) {
+    var g = gramsFor(baseText(li));
+    var span = li.querySelector('.grams');
+    if (!g) { if (span) span.remove(); return; }
+    if (!span) {
+      span = document.createElement('span');
+      span.className = 'grams';
+      li.appendChild(span);
+    }
     span.textContent = ' (' + g + ')';
-    li.appendChild(span);
-  });
+  }
+
+  // Work out conversions for every ingredient list on the page.
+  document.querySelectorAll('.recipe-body ul li').forEach(update);
+
+  // Called by the recipe scaler after amounts change.
+  window.refreshGrams = function (root) {
+    (root || document).querySelectorAll('.recipe-body ul li').forEach(update);
+  };
 
   function stored() {
     try { return localStorage.getItem('showGrams') === '1'; } catch (e) { return false; }

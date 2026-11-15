@@ -165,3 +165,32 @@ main { max-width: 1040px; margin: 0 auto; padding: 0 20px 60px; }
   border-bottom: 2px solid var(--accent-soft); display: flex; align-items: baseline; gap: 10px;
 }
 .cat-count { font-family: "Source Sans 3", system-ui, sans-serif; font-size: .85rem; font-weight: 600; color: var(--muted); }
+
+/* Recipe scaler */
+.scaler {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  margin: 32px 0 0; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card);
+}
+.scaler[hidden] { display: none; }
+.scaler-label { font-weight: 600; }
+.scaler-btns { display: flex; gap: 6px; }
+.scaler-btns button {
+  font: inherit; font-size: .95rem; min-width: 46px; padding: 6px 10px; cursor: pointer;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--paper); color: var(--ink);
+}
+.scaler-btns button.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+.scaler-custom { color: var(--muted); font-size: .95rem; }
+.scaler-custom input {
+  font: inherit; width: 64px; padding: 5px 8px; margin: 0 2px;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--paper); color: var(--ink);
+}
+.scale-note {
+  margin: 0 0 8px; padding: 8px 12px; border-radius: 10px;
+  background: var(--accent-soft); color: var(--accent); font-size: .9rem; font-weight: 600;
+}
+.scale-note[hidden] { display: none; }
+.scale-note button {
+  font: inherit; margin-left: 6px; padding: 0; background: none; border: 0;
+  color: var(--accent); text-decoration: underline; cursor: pointer;
+}
+@media print { .scaler, .scale-note button { display: none; } }
